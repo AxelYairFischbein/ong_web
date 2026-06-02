@@ -1,4 +1,4 @@
-export function renderMenu(selector = '#menu-root') {
+export function renderMenu(selector = '#menu-root', { basePath = '' } = {}) {
     const container = document.querySelector(selector);
     if (!container) return;
 
@@ -12,22 +12,22 @@ export function renderMenu(selector = '#menu-root') {
             </button>
 
             <div class="menu-logo">
-                <a href="#"><img src="componentes/menu-flex/logo.png" alt="Logo"></a>
+                <a href="${basePath}index.html"><img src="${basePath}componentes/menu-flex/logo.png" alt="Logo"></a>
             </div>
 
             <div class="menu-spacer" aria-hidden="true"></div>
 
             <div class="menu-panel" id="menu-panel">
                 <ul class="menu-links">
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a href="#">Adoptá</a></li>
-                    <li><a href="#">Voluntarios</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="${basePath}paginas/nosotros.html">Nosotros</a></li>
+                    <li><a href="${basePath}paginas/adopta.html">Adoptá</a></li>
+                    <li><a href="${basePath}paginas/voluntarios.html">Voluntarios</a></li>
+                    <li><a href="${basePath}paginas/contacto.html">Contacto</a></li>
                 </ul>
             </div>
 
             <div class="menu-cta">
-                <a class="donate-btn" href="#">Doná ahora</a>
+                <a class="donate-btn" href="${basePath}paginas/donar.html">Doná ahora</a>
             </div>
         </nav>
     </header>
@@ -46,9 +46,12 @@ export function renderMenu(selector = '#menu-root') {
     }
 }
 
-// Auto-init if script is loaded directly and DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => renderMenu());
+    document.addEventListener('DOMContentLoaded', () => {
+        const basePath = window.location.pathname.includes('/paginas/') ? '../' : '';
+        renderMenu('#menu-root', { basePath });
+    });
 } else {
-    renderMenu();
+    const basePath = window.location.pathname.includes('/paginas/') ? '../' : '';
+    renderMenu('#menu-root', { basePath });
 }

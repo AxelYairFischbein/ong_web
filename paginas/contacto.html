@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto – ONG</title>
+    <link rel="stylesheet" href="../componentes/menu-flex/styles.css">
+    <link rel="stylesheet" href="../componentes/footer/styles.css">
+</head>
+<body>
+    <div id="menu-root"></div>
+
+    <main>
+        <h1>Contacto</h1>
+    </main>
+
+    <div id="footer-root"></div>
+
+    <script type="module" src="../componentes/menu-flex/menu.js"></script>
+    <script type="module">
+        import { renderFooter } from '../componentes/footer/footer.js';
+        renderFooter('footer-root');
+    </script>
+</body>
+</html>

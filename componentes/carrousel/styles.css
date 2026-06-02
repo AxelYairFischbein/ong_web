@@ -1,6 +1,9 @@
 #carrousel-root {
-    width: 85%;
+    width: min(85%, calc(100% - 20px));
+    min-width: 300px;
+    min-width: min(275px, calc(100% - 20px));
     margin: 32px auto;
+
 }
 
 .carrousel-wrapper {
@@ -31,9 +34,15 @@
     pointer-events: auto;
 }
 
-.carrousel-slide img {
+.carrousel-slide picture {
+    display: block;
+    width: 100%;
+}
+
+.carrousel-slide picture img {
     width: 100%;
     height: 420px;
+    min-height: 250px;
     object-fit: cover;
     display: block;
 }
@@ -107,7 +116,7 @@
 }
 
 @media (max-width: 600px) {
-    .carrousel-slide img {
-        height: 220px;
+    .carrousel-slide picture img {
+        height: 250px;
     }
 }

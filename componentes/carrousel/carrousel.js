@@ -15,7 +15,10 @@ export function renderCarrousel(selector = '#carrousel-root') {
             <div class="carrousel-track">
                 ${images.map((src, i) => `
                     <div class="carrousel-slide${i === 0 ? ' active' : ''}">
-                        <img src="${src}" alt="Slide ${i + 1}">
+                        <picture>
+                            <source srcset="${src}" type="image/png">
+                            <img src="${src}" alt="Slide ${i + 1}">
+                        </picture>
                     </div>
                 `).join('')}
             </div>

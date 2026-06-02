@@ -4,7 +4,16 @@
     box-sizing: border-box;
 }
 
+body {
+    padding-top: 68px;
+}
+
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     min-width: 275px;
 }
 
