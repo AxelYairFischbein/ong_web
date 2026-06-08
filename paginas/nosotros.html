@@ -6,17 +6,145 @@
     <title>Nosotros – ONG</title>
     <link rel="stylesheet" href="../componentes/menu-flex/styles.css">
     <link rel="stylesheet" href="../componentes/footer/styles.css">
+    <link rel="stylesheet" href="../componentes/banner/styles.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-hero {
+            max-width: 860px;
+            margin: 48px auto 0;
+            padding: 0 20px;
+            text-align: center;
+            color: #e2e8f0;
+        }
+
+        .about-hero h1 {
+            margin: 0 0 16px;
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            color: #f8fafc;
+        }
+
+        .about-hero p {
+            margin: 0;
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .about-section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .about-section h2 {
+            color: #f8fafc;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            margin: 0 0 14px;
+        }
+
+        .about-section p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin: 0 0 12px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 24px;
+        }
+
+        .value-card {
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 14px;
+            padding: 22px;
+            color: #cbd5e1;
+        }
+
+        .value-card h3 {
+            margin: 0 0 8px;
+            color: #7dd3fc;
+            font-size: 1.1rem;
+        }
+
+        .value-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .about-cta {
+            text-align: center;
+            margin: 56px auto 64px;
+        }
+
+        .about-cta a {
+            display: inline-block;
+            background: #3b82f6;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .about-cta a:hover {
+            background: #2563eb;
+        }
+    </style>
 </head>
 <body>
     <div id="menu-root"></div>
 
+    <div id="banner-root"></div>
+
     <main>
-        <h1>Nosotros</h1>
+        <section class="activities-section">
+            <h2>¿Cómo desarrollamos nuestras actividades?</h2>
+            <div class="activities-grid">
+                <article class="activity-item">
+                    <div class="activity-icon" aria-hidden="true">🐕</div>
+                    <h3>Acción directa</h3>
+                    <p>Intervenimos directamente en la asistencia a animales abandonados en situaciones críticas, brindándoles atención médica y fomentando su adopción posterior por parte de hogares responsables.</p>
+                </article>
+                <article class="activity-item">
+                    <div class="activity-icon" aria-hidden="true">🐶</div>
+                    <h3>Acción preventiva</h3>
+                    <p>Organizamos campañas de castración gratuitas y/o de bajo costo en zonas de alta vulnerabilidad, donde la presencia estatal es ineficiente y los animales se reproducen sin control.</p>
+                </article>
+                <article class="activity-item">
+                    <div class="activity-icon" aria-hidden="true">🐩</div>
+                    <h3>Acciones educativas</h3>
+                    <p>Impartimos charlas, talleres y campañas de bien público para concientizar sobre la sobrepoblación animal, la castración, la adopción, el maltrato y la tenencia responsable.</p>
+                </article>
+                <article class="activity-item">
+                    <div class="activity-icon" aria-hidden="true">🦮</div>
+                    <h3>Acciones judiciales y legislativas</h3>
+                    <p>Exigimos el cumplimiento de las leyes existentes y respaldamos proyectos de ley que beneficien a los animales, contribuyendo así a su protección y bienestar.</p>
+                </article>
+                <article class="activity-item">
+                    <div class="activity-icon" aria-hidden="true">🐕‍🦺</div>
+                    <h3>Acciones solidarias</h3>
+                    <p>Establecemos colaboraciones estrechas con entidades de bien público, organizaciones y activistas que comparten nuestros objetivos, fortaleciendo la red de apoyo a la causa animal.</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="about-cta">
+            <a href="voluntarios.html">Sumate como voluntario</a>
+        </div>
     </main>
 
     <div id="footer-root"></div>
 
     <script type="module" src="../componentes/menu-flex/menu.js"></script>
+    <script type="module">
+        import { renderBanner } from '../componentes/banner/banner.js';
+        renderBanner('#banner-root', { image: 'img/banner_nosotros.jpg', title: 'Nosotros' });
+    </script>
     <script type="module">
         import { renderFooter } from '../componentes/footer/footer.js';
         renderFooter('footer-root');

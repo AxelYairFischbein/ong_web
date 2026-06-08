@@ -1,0 +1,224 @@
+.conocelos {
+    max-width: 1100px;
+    margin: 48px auto;
+    padding: 0 20px;
+}
+
+.conocelos h2 {
+    color: #f8fafc;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 0 0 28px;
+}
+
+.conocelos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 32px;
+}
+
+.conocelos-item {
+    position: relative;
+    display: block;
+    border-radius: 20px;
+    overflow: hidden;
+    background: transparent;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    padding: 0;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+    box-shadow: 0 12px 30px rgba(2, 6, 23, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.conocelos-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.conocelos-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(11, 17, 32, 0) 45%, rgba(11, 17, 32, 0.92) 100%);
+}
+
+.conocelos-item span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 18px;
+    color: #f8fafc;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+    text-align: left;
+}
+
+.conocelos-item:hover,
+.conocelos-item:focus-visible {
+    transform: translateY(-6px);
+    border-color: rgba(125, 211, 252, 0.5);
+    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.5), 0 0 0 1px rgba(125, 211, 252, 0.25);
+}
+
+.conocelos-item:hover img,
+.conocelos-item:focus-visible img {
+    transform: scale(1.07);
+}
+
+.conocelos-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 36px;
+}
+
+.conocelos-page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.conocelos-page-nav,
+.conocelos-page-number {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #cbd5e1;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.conocelos-page-nav {
+    padding: 8px 14px;
+    letter-spacing: 0.02em;
+}
+
+.conocelos-page-nav:hover:not(:disabled) {
+    color: #f8fafc;
+    border-color: rgba(125, 211, 252, 0.35);
+}
+
+.conocelos-page-nav:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.conocelos-page-number {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.conocelos-page-number:hover {
+    color: #f8fafc;
+    border-color: rgba(148, 163, 184, 0.3);
+}
+
+.conocelos-page-number.active {
+    color: #0b1120;
+    background: #7dd3fc;
+    border-color: #7dd3fc;
+}
+
+.conocelos-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    background: rgba(5, 8, 22, 0.78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.conocelos-overlay[hidden] {
+    display: none;
+}
+
+.conocelos-modal {
+    position: relative;
+    width: min(880px, 100%);
+    max-height: 88vh;
+    overflow-y: auto;
+    background: #111827;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 18px;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: minmax(0, 320px) 1fr;
+    gap: 28px;
+}
+
+.conocelos-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: rgba(15, 23, 42, 0.6);
+    color: #e2e8f0;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.conocelos-modal-close:hover {
+    color: #fff;
+    border-color: rgba(125, 211, 252, 0.45);
+}
+
+.conocelos-modal-img {
+    width: 100%;
+    height: 100%;
+    max-height: 360px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.conocelos-modal-info h3 {
+    margin: 0 0 18px;
+    color: #f8fafc;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.conocelos-modal-info h4 {
+    margin: 0 0 6px;
+    color: #7dd3fc;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.conocelos-modal-info p {
+    margin: 0 0 18px;
+    color: #cbd5e1;
+    line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+    .conocelos-modal {
+        grid-template-columns: 1fr;
+    }
+}
