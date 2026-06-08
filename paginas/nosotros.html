@@ -94,6 +94,160 @@
         .about-cta a:hover {
             background: #2563eb;
         }
+                .conocenos-card {
+            max-width: 1000px;
+            margin: 0 auto 64px;
+            padding: 48px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 64px;
+            align-items: center;
+            background: #fff5ee;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(31, 58, 95, 0.10);
+        }
+
+        .conocenos-card__content h2 {
+            margin: 0 0 18px;
+            color: #1f3a5f;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .conocenos-card__content p {
+            margin: 0 0 28px;
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .conocenos-card__btn {
+            display: inline-block;
+            background: #1f3a5f;
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .conocenos-card__btn:hover {
+            background: #2e5080;
+        }
+
+        .conocenos-card__img-circle {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: #fde8d8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .conocenos-card__img-circle img {
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+        }
+
+        @media (max-width: 700px) {
+            .conocenos-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+                padding: 32px 24px;
+                margin: 0 16px 48px;
+            }
+
+            .conocenos-card__img-circle {
+                margin: 0 auto;
+            }
+        }
+
+        .instagram-card {
+            max-width: 1000px;
+            margin: 0 auto 64px;
+            padding: 48px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 64px;
+            align-items: center;
+            background: linear-gradient(135deg, #fdf7f0 0%, #f5e6d3 100%);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(31, 58, 95, 0.10);
+        }
+
+        .instagram-card__img-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .instagram-card__img-col img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.10));
+        }
+
+        .instagram-card__content h2 {
+            margin: 0 0 18px;
+            color: #1f3a5f;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .instagram-card__content p {
+            margin: 0 0 28px;
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .instagram-card__link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.30);
+        }
+
+        .instagram-card__link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.40);
+        }
+
+        @media (max-width: 700px) {
+            .instagram-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+                padding: 32px 24px;
+                margin: 0 16px 48px;
+            }
+
+            .instagram-card__img-col {
+                order: -1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -131,6 +285,18 @@
         <div class="about-cta">
             <a href="voluntarios.html">Sumate como voluntario</a>
         </div>
+
+                <section class="instagram-card">
+            <div class="instagram-card__img-col">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram Logo">
+            </div>
+            <div class="instagram-card__content">
+                <h2>Siguinos en Instagram</h2>
+                <p>¡Mantente conectado con nuestras últimas actualizaciones, historias de adopción exitosas y contenido especial sobre el cuidado animal! Síguenos en Instagram para ser parte de nuestra comunidad.</p>
+                <a href="https://www.instagram.com/patitasdebelgrano/?hl=es-la" target="_blank" rel="noopener noreferrer" class="instagram-card__link">Seguir</a>
+            </div>
+        </section>
+
     </main>
 
     <div id="footer-root"></div>

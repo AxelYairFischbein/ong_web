@@ -24,6 +24,7 @@ export function renderConocelos(selector = '#conocelos-root', { perfiles = [], t
                     <p class="conocelos-modal-edad"></p>
                     <h4>Historia</h4>
                     <p class="conocelos-modal-historia"></p>
+                    <a class="conocelos-modal-adoptar" href="contacto.html">¡Quiero adoptarlo!</a>
                 </div>
             </div>
         </div>

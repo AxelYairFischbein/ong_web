@@ -1,7 +1,34 @@
-const images = [
-    'componentes/carrousel/img/perro1.png',
-    'componentes/carrousel/img/perro2.png',
-    'componentes/carrousel/img/perro3.png',
+const slides = [
+    {
+        src:   'componentes/carrousel/img/banner_adopta.jpg',
+        alt:   'Animales en adopción',
+        title: 'Dale una familia a quien más lo necesita',
+        href:  'paginas/adopta.html',
+    },
+    {
+        src:   'componentes/carrousel/img/banner_nosotros.jpg',
+        alt:   'Quiénes somos',
+        title: 'Conocé la historia detrás de cada rescate',
+        href:  'paginas/nosotros.html',
+    },
+    {
+        src:   'componentes/carrousel/img/banner_voluntarios.jpg',
+        alt:   'Voluntarios',
+        title: 'Tu tiempo puede cambiar una vida',
+        href:  'paginas/voluntarios.html',
+    },
+    {
+        src:   'componentes/carrousel/img/banner_contacto.jpg',
+        alt:   'Contacto',
+        title: '¿Tenés dudas? Estamos para ayudarte',
+        href:  'paginas/contacto.html',
+    },
+    {
+        src:   'paginas/img/banner_donar.jpg',
+        alt:   'Donar',
+        title: 'Cada donación salva una vida',
+        href:  'paginas/donar.html',
+    },
 ];
 
 export function renderCarrousel(selector = '#carrousel-root') {
@@ -13,19 +40,23 @@ export function renderCarrousel(selector = '#carrousel-root') {
         <div class="carrousel">
             <button class="carrousel-arrow carrousel-prev" aria-label="Anterior"></button>
             <div class="carrousel-track">
-                ${images.map((src, i) => `
+                ${slides.map((slide, i) => `
                     <div class="carrousel-slide${i === 0 ? ' active' : ''}">
                         <picture>
-                            <source srcset="${src}" type="image/png">
-                            <img src="${src}" alt="Slide ${i + 1}">
+                            <source srcset="${slide.src}" type="image/jpeg">
+                            <img src="${slide.src}" alt="${slide.alt}">
                         </picture>
+                        <div class="carrousel-caption">
+                            <h1>${slide.title}</h1>
+                            <a class="carrousel-caption__btn" href="${slide.href}">Ver más</a>
+                        </div>
                     </div>
                 `).join('')}
             </div>
             <button class="carrousel-arrow carrousel-next" aria-label="Siguiente"></button>
         </div>
         <div class="carrousel-dots">
-            ${images.map((_, i) => `
+            ${slides.map((_, i) => `
                 <button class="carrousel-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Ir a slide ${i + 1}"></button>
             `).join('')}
         </div>
@@ -35,7 +66,7 @@ export function renderCarrousel(selector = '#carrousel-root') {
     container.innerHTML = html;
 
     let current = 0;
-    const slides = container.querySelectorAll('.carrousel-slide');
+    const slideEls = container.querySelectorAll('.carrousel-slide');
     const dots = container.querySelectorAll('.carrousel-dot');
 
     let timer;
@@ -46,10 +77,10 @@ export function renderCarrousel(selector = '#carrousel-root') {
     }
 
     function goTo(index) {
-        slides[current].classList.remove('active');
+        slideEls[current].classList.remove('active');
         dots[current].classList.remove('active');
-        current = (index + slides.length) % slides.length;
-        slides[current].classList.add('active');
+        current = (index + slideEls.length) % slideEls.length;
+        slideEls[current].classList.add('active');
         dots[current].classList.add('active');
     }
 

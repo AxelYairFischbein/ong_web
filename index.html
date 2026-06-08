@@ -7,12 +7,424 @@
     <link rel="stylesheet" href="componentes/menu-flex/styles.css">
     <link rel="stylesheet" href="componentes/carrousel/styles.css">
     <link rel="stylesheet" href="componentes/footer/styles.css">
+    <style>
+        .adopta-hero {
+            max-width: 1000px;
+            margin: 64px auto;
+            padding: 48px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 64px;
+            align-items: center;
+            background: #eef4fb;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(31, 58, 95, 0.10);
+        }
+
+        .adopta-hero__img-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .adopta-hero__img-col img {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        }
+
+        .adopta-hero__postulate {
+            display: inline-block;
+            background: #1f3a5f;
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .adopta-hero__postulate:hover {
+            background: #2e5080;
+        }
+
+        .adopta-hero__content h2 {
+            margin: 0 0 18px;
+            color: #1f3a5f;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .adopta-hero__content p {
+            margin: 0 0 28px;
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .adopta-hero__actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .adopta-hero__btn {
+            display: inline-block;
+            background: #1f3a5f;
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 24px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .adopta-hero__btn:hover {
+            background: #2e5080;
+        }
+
+        /* ── Pasos para adoptar ── */
+        .pasos-section {
+            max-width: 1000px;
+            margin: 48px auto 0;
+            padding: 0 16px;
+        }
+
+        .pasos-section__title {
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin: 0 0 28px;
+        }
+
+        .pasos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .paso-card {
+            background: #f0f6ff;
+            border-radius: 18px;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: 0 2px 12px rgba(31, 58, 95, 0.08);
+        }
+
+        .paso-card--last {
+            background: #1f3a5f;
+        }
+
+        .paso-card__number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1f3a5f;
+            color: #fff;
+            font-weight: 900;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .paso-card--last .paso-card__number {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .paso-card__title {
+            margin: 0;
+            color: #1f3a5f;
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .paso-card--last .paso-card__title {
+            color: #fff;
+        }
+
+        .paso-card__text {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .paso-card--last .paso-card__text {
+            color: #cbd5e1;
+        }
+
+        .paso-card__link {
+            display: inline-block;
+            background: #fff;
+            color: #1f3a5f;
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: background 0.2s, color 0.2s;
+            margin-top: 4px;
+        }
+
+        .paso-card__link:hover {
+            background: #eef4fb;
+        }
+
+        @media (max-width: 700px) {
+            .pasos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .adopta-hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+                padding: 32px 24px;
+                margin: 32px 16px;
+            }
+
+            .adopta-hero__actions {
+                justify-content: center;
+            }
+        }
+
+        .conocenos-card {
+            max-width: 1000px;
+            margin: 0 auto 64px;
+            padding: 48px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 64px;
+            align-items: center;
+            background: #fff5ee;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(31, 58, 95, 0.10);
+        }
+
+        .conocenos-card__content h2 {
+            margin: 0 0 18px;
+            color: #1f3a5f;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .conocenos-card__content p {
+            margin: 0 0 28px;
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .conocenos-card__btn {
+            display: inline-block;
+            background: #1f3a5f;
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .conocenos-card__btn:hover {
+            background: #2e5080;
+        }
+
+        .conocenos-card__img-circle {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: #fde8d8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .conocenos-card__img-circle img {
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+        }
+
+        @media (max-width: 700px) {
+            .conocenos-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+                padding: 32px 24px;
+                margin: 0 16px 48px;
+            }
+
+            .conocenos-card__img-circle {
+                margin: 0 auto;
+            }
+        }
+
+        .instagram-card {
+            max-width: 1000px;
+            margin: 0 auto 64px;
+            padding: 48px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 64px;
+            align-items: center;
+            background: linear-gradient(135deg, #fdf7f0 0%, #f5e6d3 100%);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(31, 58, 95, 0.10);
+        }
+
+        .instagram-card__img-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .instagram-card__img-col img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.10));
+        }
+
+        .instagram-card__content h2 {
+            margin: 0 0 18px;
+            color: #1f3a5f;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .instagram-card__content p {
+            margin: 0 0 28px;
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .instagram-card__link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.30);
+        }
+
+        .instagram-card__link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.40);
+        }
+
+        @media (max-width: 700px) {
+            .instagram-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+                padding: 32px 24px;
+                margin: 0 16px 48px;
+            }
+
+            .instagram-card__img-col {
+                order: -1;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="menu-root"></div>
 
     <main>
         <div id="carrousel-root"></div>
+
+                <section class="conocenos-card">
+            <div class="conocenos-card__content">
+                <h2>Conocenos</h2>
+                <p>Somos un equipo de personas impulsadas por la empatía hacia los animales, reconociéndolos como nuestros semejantes debido a su capacidad para experimentar placer, alegría, dolor y sufrimiento.</p>
+                <a href="paginas/nosotros.html" class="conocenos-card__btn">Ver más</a>
+            </div>
+            <div class="conocenos-card__img-circle">
+                <img src="componentes/menu-flex/logo.png" alt="Logo Proyecto 4 Patas">
+            </div>
+        </section>
+
+        <section class="pasos-section">
+            <h2 class="pasos-section__title">¿Cómo adoptar?</h2>
+            <div class="pasos-grid">
+                <div class="paso-card">
+                    <div class="paso-card__number">1</div>
+                    <h3 class="paso-card__title">Conocé los animales</h3>
+                    <p class="paso-card__text">Explorá los perfiles de nuestros animales en adopción y encontrá al compañero ideal para tu estilo de vida y hogar.</p>
+                </div>
+                <div class="paso-card">
+                    <div class="paso-card__number">2</div>
+                    <h3 class="paso-card__title">Cumplí los requisitos</h3>
+                    <p class="paso-card__text">Revisá los requisitos básicos: ser mayor de edad, contar con espacio adecuado y comprometerte con el cuidado responsable.</p>
+                </div>
+                <div class="paso-card paso-card--last">
+                    <div class="paso-card__number">3</div>
+                    <h3 class="paso-card__title">Contactanos</h3>
+                    <p class="paso-card__text">Completá el formulario de contacto y nos comunicamos para coordinar el encuentro y el proceso de adopción.</p>
+                    <a href="paginas/contacto.html" class="paso-card__link">Ir a contacto</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="adopta-hero">
+            <div class="adopta-hero__img-col">
+                <img src="componentes/img/adopta.jpg" alt="Persona abrazando a un perro rescatado">
+                
+            </div>
+            <div class="adopta-hero__content">
+                <h2>Adoptá</h2>
+                <p>Al pensar en adoptar, es crucial tener en cuenta diversos factores para garantizar una convivencia armoniosa. Evaluá el espacio disponible en tu hogar, el tiempo que podés dedicar al juego y paseo, así como los costos asociados con la alimentación, atención veterinaria y cuidado durante las vacaciones. Asegurate de que tu elección de mascota se ajuste a tu estilo de vida y a la cantidad de tiempo que podés comprometer.</p>
+                <div class="adopta-hero__actions">
+            </div>
+            <a href="paginas/adopta.html" class="adopta-hero__postulate">Adopta</a>
+            </div>
+        </section>
+
     </main>
 
     <div id="footer-root"></div>

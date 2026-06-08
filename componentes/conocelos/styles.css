@@ -217,6 +217,28 @@
     line-height: 1.7;
 }
 
+.conocelos-modal-adoptar {
+    display: inline-block;
+    margin-top: 8px;
+    background: #3b82f6;
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.conocelos-modal-adoptar:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.55);
+}
+
 @media (max-width: 700px) {
     .conocelos-modal {
         grid-template-columns: 1fr;
