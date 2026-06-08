@@ -15,35 +15,59 @@
 
 .activities-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 32px;
+}
+
+@media (max-width: 1024px) {
+    .activities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .activities-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .activity-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: left;
+    transition: border-color 0.2s;
+}
+
+.activity-item:hover {
+    border-color: #3b82f6;
 }
 
 .activity-icon {
-    width: 112px;
-    height: 112px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     background-color: rgba(125, 211, 252, 0.12);
     border: 1px solid rgba(125, 211, 252, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.8rem;
-    margin-bottom: 18px;
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    flex-shrink: 0;
 }
 
 .activity-item h3 {
     color: #f8fafc;
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.03em;
     margin: 0 0 12px;
+    text-align: center;
 }
 
 .activity-item p {

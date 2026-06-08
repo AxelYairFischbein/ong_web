@@ -8,6 +8,204 @@
     <link rel="stylesheet" href="../componentes/footer/styles.css">
     <link rel="stylesheet" href="../componentes/banner/styles.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .volunteer-intro {
+            max-width: 1100px;
+            margin: 56px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .volunteer-intro__text p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin: 0 0 16px;
+            font-size: 1.05rem;
+        }
+
+        .volunteer-intro__text strong {
+            color: #f8fafc;
+        }
+
+        .volunteer-intro__media img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .volunteer-cta {
+            text-align: center;
+            margin: 8px auto 64px;
+            padding: 0 20px;
+        }
+
+        .volunteer-cta p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin: 0 0 18px;
+        }
+
+        .volunteer-cta a,
+        .volunteer-cta button {
+            display: inline-block;
+            background: #3b82f6;
+            color: #fff;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 24px;
+            text-decoration: none;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .volunteer-cta a:hover,
+        .volunteer-cta button:hover {
+            background: #2563eb;
+        }
+
+        @media (max-width: 760px) {
+            .volunteer-intro {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        dialog#volunteer-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            border: none;
+            border-radius: 16px;
+            padding: 0;
+            max-width: 560px;
+            width: 92%;
+            max-height: 85vh;
+            background: transparent;
+        }
+
+        dialog#volunteer-modal::backdrop {
+            background: rgba(11, 17, 32, 0.75);
+        }
+
+        .volunteer-modal__content {
+            position: relative;
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 16px;
+            padding: 32px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .volunteer-modal__close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: transparent;
+            border: none;
+            color: #cbd5e1;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .volunteer-modal__close:hover {
+            background: rgba(148, 163, 184, 0.15);
+            color: #f8fafc;
+        }
+
+        .volunteer-modal__content h2 {
+            margin: 0 0 8px;
+            color: #f8fafc;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        .volunteer-modal__content > p {
+            margin: 0 0 24px;
+            color: #cbd5e1;
+            text-align: center;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .form-field label {
+            color: #f8fafc;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            background-color: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            color: #f8fafc;
+            padding: 11px 14px;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .form-field textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .form-submit {
+            display: block;
+            width: 100%;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            padding: 13px 28px;
+            font-size: 1.02rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .form-submit:hover {
+            background: #2563eb;
+        }
+
+        .form-success {
+            display: none;
+            margin-top: 18px;
+            text-align: center;
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        .form-success.is-visible {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div id="menu-root"></div>
@@ -15,7 +213,64 @@
     <div id="banner-root"></div>
 
     <main>
-        <h1>Voluntarios</h1>
+        <section class="volunteer-intro">
+            <div class="volunteer-intro__text">
+                <p><strong>Ser voluntario en Proyecto 4 Patas</strong> es la forma más directa de transformar la realidad de los animales que más lo necesitan.</p>
+                <p>Sumamos personas con ganas de colaborar en el cuidado diario de los animales rescatados, el traslado a castraciones y veterinarias, la difusión en redes sociales y la organización de jornadas de adopción.</p>
+                <p><strong>No hace falta experiencia previa</strong>: alcanza con compromiso, empatía y muchas ganas de darle una mano a quienes no tienen voz.</p>
+            </div>
+            <div class="volunteer-intro__media">
+                <img src="img/voluntarios.jpg" alt="Voluntario de la organización atendiendo a un gato">
+            </div>
+        </section>
+
+        <div class="volunteer-cta">
+            <p>¿Querés ser parte del cambio? Sumate a nuestro equipo de voluntarios.</p>
+            <button type="button" id="open-volunteer-form">Quiero ser voluntario</button>
+        </div>
+
+        <dialog id="volunteer-modal">
+            <div class="volunteer-modal__content">
+                <button type="button" class="volunteer-modal__close" id="close-volunteer-form" aria-label="Cerrar">&times;</button>
+                <h2>Sumate como voluntario</h2>
+                <p>Contanos un poco sobre vos y nos pondremos en contacto para coordinar cómo podés colaborar con Proyecto 4 Patas.</p>
+
+                <form id="volunteer-form">
+                    <div class="form-field">
+                        <label for="nombre">Nombre y apellido</label>
+                        <input type="text" id="nombre" name="nombre" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]+" title="Solo se permiten letras" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" inputmode="numeric" pattern="\d{6,12}" maxlength="12" title="Solo números, entre 6 y 12 dígitos">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="disponibilidad">Disponibilidad</label>
+                        <select id="disponibilidad" name="disponibilidad">
+                            <option value="entre-semana">Entre semana</option>
+                            <option value="fines-de-semana">Fines de semana</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="mensaje">¿Por qué querés ser voluntario?</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Contanos sobre tu interés, experiencia previa o cómo te gustaría colaborar"></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">Enviar formulario</button>
+
+                    <p class="form-success" id="form-success">¡Gracias por sumarte! Te vamos a contactar a la brevedad.</p>
+                </form>
+            </div>
+        </dialog>
     </main>
 
     <div id="footer-root"></div>
@@ -28,6 +283,43 @@
     <script type="module">
         import { renderFooter } from '../componentes/footer/footer.js';
         renderFooter('footer-root');
+    </script>
+    <script>
+        const modal = document.getElementById('volunteer-modal');
+        const openBtn = document.getElementById('open-volunteer-form');
+        const closeBtn = document.getElementById('close-volunteer-form');
+        const form = document.getElementById('volunteer-form');
+        const success = document.getElementById('form-success');
+        const nombreInput = document.getElementById('nombre');
+        const telefonoInput = document.getElementById('telefono');
+
+        nombreInput.addEventListener('input', () => {
+            nombreInput.value = nombreInput.value.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]/g, '');
+        });
+
+        telefonoInput.addEventListener('input', () => {
+            telefonoInput.value = telefonoInput.value.replace(/\D/g, '').slice(0, 12);
+        });
+
+        openBtn.addEventListener('click', () => modal.showModal());
+        closeBtn.addEventListener('click', () => modal.close());
+
+        modal.addEventListener('click', (event) => {
+            const rect = modal.getBoundingClientRect();
+            const clickedInside = event.clientX >= rect.left && event.clientX <= rect.right
+                && event.clientY >= rect.top && event.clientY <= rect.bottom;
+            if (!clickedInside) modal.close();
+        });
+
+        modal.addEventListener('close', () => {
+            form.reset();
+            success.classList.remove('is-visible');
+        });
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            success.classList.add('is-visible');
+        });
     </script>
 </body>
 </html>

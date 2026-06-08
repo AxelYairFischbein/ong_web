@@ -52,8 +52,31 @@ header nav {
     border-radius: 999px;
 }
 
+.menu-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menu-logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
 .menu-logo img {
-    height: 44px;
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.menu-name {
+    color: #e5e7eb;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: block;
 }
 
 .menu-spacer {
@@ -129,6 +152,13 @@ header nav {
 
     .menu-logo img {
         height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .menu-name {
+        display: none;
     }
 
     .menu-spacer {

@@ -1,4 +1,4 @@
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 6;
 
 export function renderConocelos(selector = '#conocelos-root', { perfiles = [], title = 'Conocelos' } = {}) {
     const container = document.querySelector(selector);

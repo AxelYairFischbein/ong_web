@@ -8,14 +8,216 @@
     <link rel="stylesheet" href="../componentes/footer/styles.css">
     <link rel="stylesheet" href="../componentes/banner/styles.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-section {
+            max-width: 1100px;
+            margin: 56px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .contact-intro {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            margin: 0 0 28px;
+        }
+
+        .contact-form .form-field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 18px;
+        }
+
+        .contact-form label {
+            color: #f8fafc;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .contact-form .required {
+            color: #f87171;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            background-color: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            color: #f8fafc;
+            padding: 12px 14px;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-submit {
+            display: inline-block;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            padding: 13px 36px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .contact-submit:hover {
+            background: #2563eb;
+        }
+
+        .contact-success {
+            display: none;
+            margin: 16px 0 0;
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        .contact-success.is-visible {
+            display: block;
+        }
+
+        .contact-media-col img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+            object-fit: cover;
+            margin-bottom: 28px;
+        }
+
+        .contact-media-col h2 {
+            color: #f8fafc;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin: 0 0 14px;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .contact-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #164e63;
+            border: 3px solid #06b6d4;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .contact-social a:hover {
+            background-color: #1e5a72;
+            border-color: #7dd3fc;
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+        }
+
+        .contact-social img {
+            width: 28px;
+            height: 28px;
+            margin-top: 1.7rem;
+        }
+
+        @media (max-width: 820px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="menu-root"></div>
 
     <div id="banner-root"></div>
-    
+
     <main>
-        <h1>Contacto</h1>
+        <section class="contact-section">
+            <div class="contact-form-col">
+                <p class="contact-intro">Para contactarte con nosotros completá el siguiente formulario y seleccioná el área a donde querés dirigirte. Muchas gracias.</p>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-field">
+                        <label for="c-nombre">Nombre y apellido <span class="required">*</span></label>
+                        <input type="text" id="c-nombre" name="nombre" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]+" title="Solo se permiten letras" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="c-ciudad">Ciudad</label>
+                        <input type="text" id="c-ciudad" name="ciudad">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="c-email">E-mail <span class="required">*</span></label>
+                        <input type="email" id="c-email" name="email" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="c-telefono">Teléfono</label>
+                        <input type="tel" id="c-telefono" name="telefono" inputmode="numeric" pattern="\d{6,12}" maxlength="12" title="Solo números, entre 6 y 12 dígitos">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="c-area">Área de contacto</label>
+                        <select id="c-area" name="area">
+                            <option value="general">General</option>
+                            <option value="adopciones">Adopciones</option>
+                            <option value="voluntariado">Voluntariado</option>
+                            <option value="donaciones">Donaciones</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="c-mensaje">Mensaje <span class="required">*</span></label>
+                        <textarea id="c-mensaje" name="mensaje" required></textarea>
+                    </div>
+
+                    <button type="submit" class="contact-submit">Enviar</button>
+
+                    <p class="contact-success" id="contact-success">¡Gracias por escribirnos! Te responderemos a la brevedad.</p>
+                </form>
+            </div>
+
+            <div class="contact-media-col">
+                <img src="img/rescatando.jpg" alt="Voluntaria sosteniendo a un gato rescatado">
+                <h2>Seguinos en</h2>
+                <div class="contact-social">
+                    <a href="https://www.instagram.com/patitasdebelgrano/?hl=es-la" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <img src="https://cdn.simpleicons.org/instagram/7dd3fc" alt="Instagram">
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=100068774767241" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <img src="https://cdn.simpleicons.org/facebook/7dd3fc" alt="Facebook">
+                    </a>
+                    <a href="#" onclick="event.preventDefault(); alert('Todavía no tenemos cuenta de Twitter/X.')" aria-label="X (Twitter)">
+                        <img src="https://cdn.simpleicons.org/x/7dd3fc" alt="X (Twitter)">
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div id="footer-root"></div>
@@ -28,6 +230,26 @@
     <script type="module">
         import { renderFooter } from '../componentes/footer/footer.js';
         renderFooter('footer-root');
+    </script>
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const contactSuccess = document.getElementById('contact-success');
+        const nombreInput = document.getElementById('c-nombre');
+        const telefonoInput = document.getElementById('c-telefono');
+
+        nombreInput.addEventListener('input', () => {
+            nombreInput.value = nombreInput.value.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]/g, '');
+        });
+
+        telefonoInput.addEventListener('input', () => {
+            telefonoInput.value = telefonoInput.value.replace(/\D/g, '').slice(0, 12);
+        });
+
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            contactSuccess.classList.add('is-visible');
+            contactForm.reset();
+        });
     </script>
 </body>
 </html>

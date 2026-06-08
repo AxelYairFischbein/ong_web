@@ -8,13 +8,501 @@
     <link rel="stylesheet" href="../componentes/footer/styles.css">
     <link rel="stylesheet" href="../componentes/banner/styles.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Grid principal: 4 tarjetas ── */
+        .donate-grid {
+            max-width: 1100px;
+            margin: 56px auto 72px;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(510px, 1fr));
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .donate-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        /* foto: sin padding, imagen llena la tarjeta */
+        .donate-card--photo {
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .donate-card--photo img {
+            width: 100%;
+            flex: 1;
+            min-height: 0;
+            display: block;
+            object-fit: cover;
+        }
+
+        .donate-photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 48px 24px 24px;
+            background: linear-gradient(to top, rgba(11,17,32,0.92) 0%, transparent 100%);
+        }
+
+        .donate-photo-caption p {
+            margin: 0 0 6px;
+            color: #f8fafc;
+            font-size: 1.25rem;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .donate-photo-caption span {
+            color: #7dd3fc;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .donate-intro-text {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin: 0 0 24px;
+        }
+
+        .donate-intro-text strong {
+            color: #f8fafc;
+        }
+
+        /* ── Selector de monto ── */
+        .amount-selector {
+            display: flex;
+            gap: 0;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #1f2937;
+        }
+
+        .amount-btn {
+            flex: 1;
+            padding: 13px 8px;
+            background: #111827;
+            border: none;
+            border-right: 1px solid #1f2937;
+            color: #cbd5e1;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .amount-btn:last-child {
+            border-right: none;
+        }
+
+        .amount-btn:hover {
+            background: #1d2a3a;
+            color: #f8fafc;
+        }
+
+        .amount-btn.is-active {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        .custom-amount {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .custom-amount.is-visible {
+            display: block;
+        }
+
+        .custom-amount input {
+            width: 100%;
+            background: #0b1120;
+            border: 1px solid #3b82f6;
+            border-radius: 10px;
+            color: #f8fafc;
+            padding: 12px 14px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .custom-amount input:focus {
+            outline: none;
+            border-color: #60a5fa;
+        }
+
+        /* ── Campos del formulario ── */
+        .donate-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .donate-form .form-field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .donate-form .form-field.full {
+            grid-column: 1 / -1;
+        }
+
+        .donate-form label {
+            color: #f8fafc;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .donate-form input,
+        .donate-form select {
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            color: #f8fafc;
+            padding: 11px 14px;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .donate-form input:focus,
+        .donate-form select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .donate-form input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.7);
+        }
+
+        /* ── Checkboxes ── */
+        .check-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .check-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+            cursor: pointer;
+        }
+
+        .check-group input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #3b82f6;
+            flex-shrink: 0;
+            padding: 0;
+            border-radius: 4px;
+        }
+
+        /* ── Botón donar ── */
+        .donate-submit {
+            display: block;
+            width: 100%;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .donate-submit:hover {
+            background: #2563eb;
+        }
+
+        .donate-secure {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .donate-secure svg {
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .donate-success {
+            display: none;
+            margin-top: 16px;
+            color: #7dd3fc;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .donate-success.is-visible {
+            display: block;
+        }
+
+        .alt-card {
+            text-align: center;
+        }
+
+        .alt-card__title {
+            color: #f8fafc;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin: 0 0 8px;
+        }
+
+        .alt-card__subtitle {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin: 0 0 20px;
+            line-height: 1.5;
+        }
+
+        .alt-card hr {
+            border: none;
+            border-top: 1px solid #1f2937;
+            margin: 0 0 20px;
+        }
+
+        .bank-details {
+            font-size: 0.9rem;
+            line-height: 2;
+            color: #cbd5e1;
+        }
+
+        .bank-details strong {
+            color: #f8fafc;
+            display: block;
+        }
+
+        .bank-details span {
+            display: block;
+        }
+
+        /* ── Mercado Pago card ── */
+        .mp-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .mp-logo img {
+            height: 36px;
+        }
+
+        .mp-alias {
+            color: #f8fafc;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 0.04em;
+            margin: 0 0 20px;
+        }
+
+        .mp-amounts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .mp-btn {
+            padding: 12px 8px;
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 24px;
+            color: #f8fafc;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .mp-btn:hover {
+            background: #1d2a3a;
+            border-color: #3b82f6;
+        }
+
+        .mp-btn.full {
+            grid-column: 1 / -1;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1100px) {
+            .donate-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .donate-form .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="menu-root"></div>
     <div id="banner-root"></div>
 
     <main>
-        <h1>Doná ahora</h1>
+        <div class="donate-grid">
+
+            <!-- Tarjeta 1: Formulario -->
+            <div class="donate-card">
+                <p class="donate-intro-text">
+                    <strong>Tu donación cambia vidas.</strong> Con tu aporte ayudamos a rescatar, atender y encontrar hogar para los animales más vulnerables. Elegí el monto que quieras y completá tus datos.
+                </p>
+
+                <div class="amount-selector" role="group" aria-label="Elegir monto">
+                    <button type="button" class="amount-btn" data-amount="1000">$1.000</button>
+                    <button type="button" class="amount-btn" data-amount="5000">$5.000</button>
+                    <button type="button" class="amount-btn is-active" data-amount="10000">$10.000</button>
+                    <button type="button" class="amount-btn" data-amount="otro">Otro</button>
+                </div>
+
+                <div class="custom-amount" id="custom-amount">
+                    <input type="number" id="monto-custom" placeholder="Ingresá el monto en ARS" min="1">
+                </div>
+
+                <form id="donate-form" class="donate-form">
+                    <input type="hidden" id="monto-seleccionado" name="monto" value="10000">
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="d-nombre">Nombre</label>
+                            <input type="text" id="d-nombre" name="nombre" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]+" title="Solo letras" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="d-apellido">Apellido</label>
+                            <input type="text" id="d-apellido" name="apellido" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]+" title="Solo letras" required>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="d-email">Correo electrónico</label>
+                        <input type="email" id="d-email" name="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="d-tipodoc">Tipo de documento</label>
+                            <select id="d-tipodoc" name="tipodoc">
+                                <option value="">Seleccionar</option>
+                                <option value="dni">DNI</option>
+                                <option value="pasaporte">Pasaporte</option>
+                                <option value="cuil">CUIL</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="d-numdoc">Número de documento</label>
+                            <input type="text" id="d-numdoc" name="numdoc" inputmode="numeric" maxlength="12">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="d-fecha">Fecha de nacimiento</label>
+                            <input type="date" id="d-fecha" name="fecha">
+                        </div>
+                        <div class="form-field">
+                            <label for="d-telefono">Número de teléfono</label>
+                            <input type="tel" id="d-telefono" name="telefono" inputmode="numeric" pattern="\d{6,12}" maxlength="12" title="Solo números, entre 6 y 12 dígitos">
+                        </div>
+                    </div>
+
+                    <div class="check-group">
+                        <label>
+                            <input type="checkbox" name="notif-email" checked>
+                            Quiero recibir notificaciones por email
+                        </label>
+                        <label>
+                            <input type="checkbox" name="notif-celular" checked>
+                            Quiero recibir notificaciones por celular
+                        </label>
+                    </div>
+
+                    <button type="submit" class="donate-submit">Donar ahora</button>
+
+                    <div class="donate-secure">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V6a5 5 0 0 0-5-5zm-3 5a3 3 0 0 1 6 0v2H9V6zm3 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg>
+                        <span>Este formulario es seguro. Tu información es encriptada para tu protección.</span>
+                    </div>
+
+                    <p class="donate-success" id="donate-success">¡Gracias por tu donación! Te enviaremos la confirmación por email.</p>
+                </form>
+            </div>
+
+            <!-- Tarjeta 2: Foto -->
+            <div class="donate-card donate-card--photo">
+                <img src="img/bebe.jpg" alt="Gatito bebé rescatado por la organización">
+                <div class="donate-photo-caption">
+                    <p>Con tu donación, les damos una segunda oportunidad.</p>
+                    <span>Cada peso ayuda a rescatar, curar y encontrarles un hogar.</span>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3: Transferencia bancaria -->
+            <div class="donate-card alt-card">
+                <h2 class="alt-card__title">Transferencia bancaria</h2>
+                <p class="alt-card__subtitle">Doná el importe que quieras directamente en nuestra cuenta.</p>
+                <hr>
+                <div class="bank-details">
+                    <strong>Banco Provincia</strong>
+                    <span><strong>Alias:</strong> Patitas.De.Belgrano</span>
+                    <span><strong>CBU:</strong> 0140059501500205063480</span>
+                    <span>Asociación Civil Patitas de Belgrano</span>
+                    <span>Cuenta Corriente en pesos N° 50634/8</span>
+                    <span>Sucursal N° 05002 – Belgrano</span>
+                    <span><strong>CUIT:</strong> 30-71080554-3</span>
+                </div>
+            </div>
+
+            <!-- Tarjeta 4: Mercado Pago -->
+            <div class="donate-card alt-card">
+                <div class="mp-logo">
+                    <img src="https://cdn.simpleicons.org/mercadopago/7dd3fc" alt="Mercado Pago">
+                    <span style="color:#7dd3fc; font-weight:800; font-size:1.2rem;">Mercado Pago</span>
+                </div>
+                <p class="mp-alias">ALIAS: PATITASDEBELGRANO.MP</p>
+                <hr>
+                <div class="mp-amounts">
+                    <button type="button" class="mp-btn">Doná $1.000</button>
+                    <button type="button" class="mp-btn">Doná $5.000</button>
+                    <button type="button" class="mp-btn">Doná $10.000</button>
+                    <button type="button" class="mp-btn">Doná $20.000</button>
+                    <button type="button" class="mp-btn full">Elegí el monto</button>
+                    <button type="button" class="mp-btn full">Doná mensualmente</button>
+                    <button type="button" class="mp-btn full">Apadriná 1 castración</button>
+                </div>
+            </div>
+
+        </div>
     </main>
 
     <div id="footer-root"></div>
@@ -27,6 +515,67 @@
     <script type="module">
         import { renderFooter } from '../componentes/footer/footer.js';
         renderFooter('footer-root');
+    </script>
+    <script>
+        // Selector de monto
+        const amountBtns = document.querySelectorAll('.amount-btn');
+        const customDiv = document.getElementById('custom-amount');
+        const montoHidden = document.getElementById('monto-seleccionado');
+
+        amountBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                amountBtns.forEach(b => b.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                if (btn.dataset.amount === 'otro') {
+                    customDiv.classList.add('is-visible');
+                    montoHidden.value = '';
+                } else {
+                    customDiv.classList.remove('is-visible');
+                    montoHidden.value = btn.dataset.amount;
+                }
+            });
+        });
+
+        document.getElementById('monto-custom').addEventListener('input', (e) => {
+            montoHidden.value = e.target.value;
+        });
+
+        // Filtros de input
+        const nombres = [document.getElementById('d-nombre'), document.getElementById('d-apellido')];
+        nombres.forEach(el => {
+            el.addEventListener('input', () => {
+                el.value = el.value.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]/g, '');
+            });
+        });
+
+        const numDoc = document.getElementById('d-numdoc');
+        numDoc.addEventListener('input', () => {
+            numDoc.value = numDoc.value.replace(/\D/g, '').slice(0, 12);
+        });
+
+        const telInput = document.getElementById('d-telefono');
+        telInput.addEventListener('input', () => {
+            telInput.value = telInput.value.replace(/\D/g, '').slice(0, 12);
+        });
+
+        // Envío del formulario
+        const donateForm = document.getElementById('donate-form');
+        const donateSuccess = document.getElementById('donate-success');
+        donateForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            donateSuccess.classList.add('is-visible');
+            donateForm.reset();
+            amountBtns.forEach(b => b.classList.remove('is-active'));
+            document.querySelector('[data-amount="10000"]').classList.add('is-active');
+            customDiv.classList.remove('is-visible');
+        });
+
+        // Botones MP (placeholder)
+        document.querySelectorAll('.mp-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('Próximamente disponible. Usá el alias PROYECTO4PATAS.MP en Mercado Pago.');
+            });
+        });
     </script>
 </body>
 </html>

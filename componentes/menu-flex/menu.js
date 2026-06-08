@@ -12,7 +12,10 @@ export function renderMenu(selector = '#menu-root', { basePath = '' } = {}) {
             </button>
 
             <div class="menu-logo">
-                <a href="${basePath}index.html"><img src="${basePath}componentes/menu-flex/logo.png" alt="Logo"></a>
+                <a href="${basePath}index.html">
+                    <img src="${basePath}componentes/menu-flex/logo.png" alt="Logo">
+                    <span class="menu-name">Patitas de<br>Belgrano</span>
+                </a>
             </div>
 
             <div class="menu-spacer" aria-hidden="true"></div>
@@ -42,6 +45,14 @@ export function renderMenu(selector = '#menu-root', { basePath = '' } = {}) {
         toggle.addEventListener('click', () => {
             const isOpen = container.classList.toggle('menu-open');
             toggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // Cerrar el menú automáticamente cuando el ancho es mayor a 750px
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 750) {
+                container.classList.remove('menu-open');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
         });
     }
 }
