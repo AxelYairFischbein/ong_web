@@ -253,14 +253,84 @@
 
         .donate-success {
             display: none;
-            margin-top: 16px;
-            color: #7dd3fc;
-            font-weight: 600;
-            text-align: center;
         }
 
         .donate-success.is-visible {
             display: block;
+        }
+
+        .donate-thanks {
+            text-align: center;
+            padding: 8px 0;
+        }
+
+        .donate-thanks__icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        .donate-thanks h3 {
+            color: #f8fafc;
+            font-size: 1.4rem;
+            margin: 0 0 8px;
+        }
+
+        .donate-thanks__sub {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin: 0 0 24px;
+        }
+
+        .donate-thanks__table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .donate-thanks__table td {
+            padding: 10px 0;
+            border-bottom: 1px solid #1f2937;
+        }
+
+        .donate-thanks__table td:first-child {
+            color: #64748b;
+            font-weight: 700;
+            width: 140px;
+        }
+
+        .donate-thanks__table td:last-child {
+            color: #f8fafc;
+        }
+
+        .donate-thanks__amount {
+            display: inline-block;
+            background: #3b82f6;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 900;
+            padding: 12px 32px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .donate-thanks__new {
+            background: transparent;
+            border: 1px solid #3b82f6;
+            color: #3b82f6;
+            border-radius: 24px;
+            padding: 10px 28px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .donate-thanks__new:hover {
+            background: #3b82f6;
+            color: #fff;
         }
 
         .alt-card {
@@ -382,7 +452,7 @@
                 </p>
 
                 <div class="amount-selector" role="group" aria-label="Elegir monto">
-                    <button type="button" class="amount-btn" data-amount="1000">$1.000</button>
+                    <button type="button" class="amount-btn" data-amount="1000">$2.500</button>
                     <button type="button" class="amount-btn" data-amount="5000">$5.000</button>
                     <button type="button" class="amount-btn is-active" data-amount="10000">$10.000</button>
                     <button type="button" class="amount-btn" data-amount="otro">Otro</button>
@@ -415,8 +485,7 @@
                         <div class="form-field">
                             <label for="d-tipodoc">Tipo de documento</label>
                             <select id="d-tipodoc" name="tipodoc">
-                                <option value="">Seleccionar</option>
-                                <option value="dni">DNI</option>
+                                <option default value="dni">DNI</option>                             
                                 <option value="pasaporte">Pasaporte</option>
                                 <option value="cuil">CUIL</option>
                             </select>
@@ -427,25 +496,16 @@
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-field">
-                            <label for="d-fecha">Fecha de nacimiento</label>
-                            <input type="date" id="d-fecha" name="fecha">
-                        </div>
                         <div class="form-field">
                             <label for="d-telefono">Número de teléfono</label>
                             <input type="tel" id="d-telefono" name="telefono" inputmode="numeric" pattern="\d{6,12}" maxlength="12" title="Solo números, entre 6 y 12 dígitos">
                         </div>
-                    </div>
+                    
 
                     <div class="check-group">
                         <label>
                             <input type="checkbox" name="notif-email" checked>
                             Quiero recibir notificaciones por email
-                        </label>
-                        <label>
-                            <input type="checkbox" name="notif-celular" checked>
-                            Quiero recibir notificaciones por celular
                         </label>
                     </div>
 
@@ -456,8 +516,24 @@
                         <span>Este formulario es seguro. Tu información es encriptada para tu protección.</span>
                     </div>
 
-                    <p class="donate-success" id="donate-success">¡Gracias por tu donación! Te enviaremos la confirmación por email.</p>
                 </form>
+
+                <div class="donate-success" id="donate-success">
+                    <div class="donate-thanks">
+                        <div class="donate-thanks__icon">🐾</div>
+                        <h3>¡Muchas gracias por tu donación!</h3>
+                        <p class="donate-thanks__sub">Tu aporte ayuda a cambiar la vida de animales que más lo necesitan.</p>
+                        <div class="donate-thanks__amount" id="thanks-monto"></div>
+                        <p id="thanks-gatos" style="color:#7dd3fc; font-size:1.05rem; font-weight:700; margin: 0 0 20px;"></p>
+                        <table class="donate-thanks__table">
+                            <tr><td>Nombre</td><td id="thanks-nombre"></td></tr>
+                            <tr><td>Email</td><td id="thanks-email"></td></tr>
+                            <tr><td>Documento</td><td id="thanks-doc"></td></tr>
+                            <tr><td>Teléfono</td><td id="thanks-tel"></td></tr>
+                        </table>
+                        <button class="donate-thanks__new" id="donate-new">Hacer otra donación</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Tarjeta 2: Foto -->
@@ -563,13 +639,51 @@
         // Envío del formulario
         const donateForm = document.getElementById('donate-form');
         const donateSuccess = document.getElementById('donate-success');
+
         donateForm.addEventListener('submit', (e) => {
             e.preventDefault();
+
+            const nombre = document.getElementById('d-nombre').value.trim();
+            const apellido = document.getElementById('d-apellido').value.trim();
+            const email = document.getElementById('d-email').value.trim();
+            const tipodoc = document.getElementById('d-tipodoc').value;
+            const numdoc = document.getElementById('d-numdoc').value.trim();
+            const telefono = document.getElementById('d-telefono').value.trim();
+            const monto = montoHidden.value;
+
+            document.getElementById('thanks-nombre').textContent = `${nombre} ${apellido}`;
+            document.getElementById('thanks-email').textContent = email || '—';
+            document.getElementById('thanks-doc').textContent = tipodoc && numdoc ? `${tipodoc.toUpperCase()} ${numdoc}` : '—';
+            document.getElementById('thanks-tel').textContent = telefono || '—';
+            const montoNum = Number(monto);
+            document.getElementById('thanks-monto').textContent = montoNum ? `$${montoNum.toLocaleString('es-AR')}` : 'Monto personalizado';
+
+            const gatos = montoNum ? Math.floor(montoNum / 2500) : 0;
+            const gatosEl = document.getElementById('thanks-gatos');
+            if (gatos > 0) {
+                gatosEl.textContent = `🐱 Con tu donación alimentás a ${gatos} ${gatos === 1 ? 'gato' : 'gatos'}`;
+            } else {
+                gatosEl.textContent = '';
+            }
+
+            const amountSelector = document.querySelector('.amount-selector');
+            donateForm.style.display = 'none';
+            amountSelector.style.display = 'none';
+            customDiv.style.display = 'none';
             donateSuccess.classList.add('is-visible');
+        });
+
+        document.getElementById('donate-new').addEventListener('click', () => {
+            const amountSelector = document.querySelector('.amount-selector');
             donateForm.reset();
+            donateForm.style.display = '';
+            amountSelector.style.display = '';
+            customDiv.style.display = '';
+            customDiv.classList.remove('is-visible');
+            donateSuccess.classList.remove('is-visible');
             amountBtns.forEach(b => b.classList.remove('is-active'));
             document.querySelector('[data-amount="10000"]').classList.add('is-active');
-            customDiv.classList.remove('is-visible');
+            montoHidden.value = '10000';
         });
 
         // Botones MP (placeholder)

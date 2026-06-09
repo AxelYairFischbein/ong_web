@@ -205,6 +205,18 @@
         .form-success.is-visible {
             display: block;
         }
+
+        .form-status {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+        }
+
+        .form-status--success { color: #4ade80; }
+        .form-status--error   { color: #f87171; }
     </style>
 </head>
 <body>
@@ -266,8 +278,7 @@
                     </div>
 
                     <button type="submit" class="form-submit">Enviar formulario</button>
-
-                    <p class="form-success" id="form-success">¡Gracias por sumarte! Te vamos a contactar a la brevedad.</p>
+                    <span id="form-status" class="form-status"></span>
                 </form>
             </div>
         </dialog>
@@ -284,12 +295,15 @@
         import { renderFooter } from '../componentes/footer/footer.js';
         renderFooter('footer-root');
     </script>
-    <script>
+    <script type="module">
+        import { sendContactEmail } from '../scripts/sendemail.js';
+
         const modal = document.getElementById('volunteer-modal');
         const openBtn = document.getElementById('open-volunteer-form');
         const closeBtn = document.getElementById('close-volunteer-form');
         const form = document.getElementById('volunteer-form');
-        const success = document.getElementById('form-success');
+        const statusSpan = document.getElementById('form-status');
+        const submitBtn = form.querySelector('.form-submit');
         const nombreInput = document.getElementById('nombre');
         const telefonoInput = document.getElementById('telefono');
 
@@ -313,12 +327,36 @@
 
         modal.addEventListener('close', () => {
             form.reset();
-            success.classList.remove('is-visible');
+            statusSpan.textContent = '';
+            statusSpan.className = 'form-status';
         });
 
-        form.addEventListener('submit', (event) => {
+        form.addEventListener('submit', async (event) => {
             event.preventDefault();
-            success.classList.add('is-visible');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            statusSpan.textContent = '';
+            statusSpan.className = 'form-status';
+            try {
+                await sendContactEmail({
+                    name:     document.getElementById('nombre').value,
+                    to_email: document.getElementById('email').value,
+                    title:    document.getElementById('disponibilidad').value,
+                    message:  document.getElementById('mensaje').value,
+                    telefono: document.getElementById('telefono').value,
+                    ciudad:   'Voluntario',
+                });
+                statusSpan.textContent = '✓ ¡Gracias por sumarte! Te contactamos a la brevedad.';
+                statusSpan.className = 'form-status form-status--success';
+                form.reset();
+            } catch (err) {
+                console.error('EmailJS error:', err);
+                statusSpan.textContent = '✗ Error al enviar. Intentá de nuevo.';
+                statusSpan.className = 'form-status form-status--error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar formulario';
+            }
         });
     </script>
     <script type="module" src="../scripts/sendemail.js"></script>

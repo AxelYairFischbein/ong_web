@@ -96,6 +96,28 @@
             display: block;
         }
 
+        .contact-error {
+            display: none;
+            margin: 16px 0 0;
+            color: #f87171;
+            font-weight: 600;
+        }
+
+        .contact-error.is-visible {
+            display: block;
+        }
+
+        .contact-status {
+            display: inline-block;
+            margin-left: 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        .contact-status--success { color: #4ade80; }
+        .contact-status--error   { color: #f87171; }
+
         .contact-media-col img {
             width: 100%;
             border-radius: 16px;
@@ -196,9 +218,10 @@
                         <textarea id="c-mensaje" name="mensaje" required></textarea>
                     </div>
 
-                    <button type="submit" class="contact-submit">Enviar</button>
-
-                    <p class="contact-success" id="contact-success">¡Gracias por escribirnos! Te responderemos a la brevedad.</p>
+                    <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+                        <button type="submit" class="contact-submit">Enviar</button>
+                        <span id="contact-status" class="contact-status"></span>
+                    </div>
                 </form>
             </div>
 
@@ -231,9 +254,12 @@
         import { renderFooter } from '../componentes/footer/footer.js';
         renderFooter('footer-root');
     </script>
-    <script>
+    <script type="module">
+        import { sendContactEmail } from '../scripts/sendemail.js';
+
         const contactForm = document.getElementById('contact-form');
-        const contactSuccess = document.getElementById('contact-success');
+        const statusSpan = document.getElementById('contact-status');
+        const submitBtn = contactForm.querySelector('.contact-submit');
         const nombreInput = document.getElementById('c-nombre');
         const telefonoInput = document.getElementById('c-telefono');
 
@@ -245,10 +271,32 @@
             telefonoInput.value = telefonoInput.value.replace(/\D/g, '').slice(0, 12);
         });
 
-        contactForm.addEventListener('submit', (event) => {
+        contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-            contactSuccess.classList.add('is-visible');
-            contactForm.reset();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            statusSpan.textContent = '';
+            statusSpan.className = 'contact-status';
+            try {
+                await sendContactEmail({
+                    name:     document.getElementById('c-nombre').value,
+                    to_email: document.getElementById('c-email').value,
+                    title:    document.getElementById('c-area').value,
+                    message:  document.getElementById('c-mensaje').value,
+                    ciudad:   document.getElementById('c-ciudad').value,
+                    telefono: document.getElementById('c-telefono').value,
+                });
+                statusSpan.textContent = '✓ Mensaje enviado';
+                statusSpan.className = 'contact-status contact-status--success';
+                contactForm.reset();
+            } catch (err) {
+                console.error('EmailJS error:', err);
+                statusSpan.textContent = '✗ Error al enviar. Intentá de nuevo.';
+                statusSpan.className = 'contact-status contact-status--error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar';
+            }
         });
     </script>
     <script type="module" src="../scripts/sendemail.js"></script>
