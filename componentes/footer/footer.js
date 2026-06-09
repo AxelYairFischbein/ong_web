@@ -73,4 +73,5 @@ export function renderFooter(containerId, options = {}) {
 
 	container.innerHTML = buildFooterTemplate({ year, brand, basePath });
 	document.body.classList.add('has-footer-bar');
+	container.dispatchEvent(new CustomEvent('footer:rendered', { bubbles: true }));
 }
