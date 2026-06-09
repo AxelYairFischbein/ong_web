@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rescate en la calle – ONG</title>
+    <link rel="stylesheet" href="../componentes/menu-flex/styles.css">
+    <link rel="stylesheet" href="../componentes/footer/styles.css">
+    <style>
+        .proyecto-hero {
+            max-width: 860px;
+            margin: 56px auto 0;
+            padding: 0 24px;
+        }
+
+        .proyecto-hero__back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #7dd3fc;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+            transition: color 0.2s;
+        }
+
+        .proyecto-hero__back:hover { color: #bae6fd; }
+
+        .proyecto-hero__tag {
+            display: inline-block;
+            background: #1e3a5f;
+            color: #7dd3fc;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+
+        .proyecto-hero h1 {
+            color: #f8fafc;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin: 0 0 20px;
+        }
+
+        .proyecto-hero__lead {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin: 0 0 40px;
+        }
+
+        .proyecto-hero__img {
+            width: 100%;
+            border-radius: 18px;
+            object-fit: cover;
+            max-height: 400px;
+            display: block;
+            margin-bottom: 56px;
+            background: #1e293b;
+        }
+
+        .proyecto-body {
+            max-width: 720px;
+            margin: 0 auto 80px;
+            padding: 0 24px;
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .proyecto-body h2 {
+            color: #f8fafc;
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin: 40px 0 12px;
+        }
+
+        .proyecto-body p { margin: 0 0 16px; }
+
+        .proyecto-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card__number {
+            display: block;
+            color: #7dd3fc;
+            font-size: 2rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .stat-card__label {
+            display: block;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+
+        .proyecto-cta {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .proyecto-cta a {
+            display: inline-block;
+            background: #3b82f6;
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 36px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .proyecto-cta a:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .proyecto-stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div id="menu-root"></div>
+
+    <main>
+        <div class="proyecto-hero">
+            <span class="proyecto-hero__tag">🐾 Rescate</span>
+            <h1>Rescate de animales en situación de calle</h1>
+            <p class="proyecto-hero__lead">Desde 2019 llevamos adelante operativos de rescate en zonas urbanas y periurbanas de Buenos Aires, devolviendo dignidad y una segunda oportunidad a los animales más vulnerables.</p>
+        </div>
+
+        <div class="proyecto-body">
+            <div class="proyecto-stats">
+                <div class="stat-card">
+                    <span class="stat-card__number">340+</span>
+                    <span class="stat-card__label">Animales rescatados</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-card__number">85%</span>
+                    <span class="stat-card__label">Tasa de adopción</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-card__number">12</span>
+                    <span class="stat-card__label">Zonas de cobertura</span>
+                </div>
+            </div>
+
+            <h2>¿Cómo funciona el operativo?</h2>
+            <p>Cuando recibimos una denuncia o aviso de un animal en peligro, activamos nuestra red de voluntarios zonales. En menos de 24 horas un equipo se desplaza al lugar para evaluar la situación, capturar al animal con métodos no traumáticos y trasladarlo a una veterinaria asociada.</p>
+            <p>Una vez estabilizado, el animal ingresa a nuestra red de tránsito: familias voluntarias que lo alojan temporalmente mientras recibe los cuidados necesarios (vacunas, desparasitación, castración) y es evaluado para determinar su perfil de adopción.</p>
+
+            <h2>Primeros auxilios y atención veterinaria</h2>
+            <p>Contamos con un protocolo de atención de urgencias en convenio con tres veterinarias de la zona norte de Buenos Aires. Todos los animales rescatados reciben una revisión completa, tratamiento antiparasitario interno y externo, y un plan de vacunación adaptado a su condición.</p>
+            <p>Los casos más críticos (traumatismos, desnutrición severa, enfermedades infecciosas) son derivados a nuestros veterinarios de referencia, quienes trabajan con honorarios reducidos en apoyo a la causa.</p>
+
+            <h2>Red de tránsito</h2>
+            <p>El tránsito es el corazón del proyecto. Sin familias que abran sus puertas temporalmente, no podríamos rescatar. Actualmente contamos con 47 familias de tránsito activas en CABA y GBA, que en promedio alojan entre 1 y 3 animales simultáneamente.</p>
+            <p>Las familias de tránsito reciben acompañamiento permanente: asistencia veterinaria cubierta por la ONG, guía de comportamiento animal y acceso a nuestra red de donaciones de alimento y materiales.</p>
+
+            <div class="proyecto-cta">
+                <a href="voluntarios.html">Sumate como voluntario de rescate</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-root"></div>
+
+    <script type="module" src="../componentes/menu-flex/menu.js"></script>
+    <script type="module">
+        import { renderFooter } from '../componentes/footer/footer.js';
+        renderFooter('footer-root');
+    </script>
+</body>
+</html>

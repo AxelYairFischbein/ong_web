@@ -75,6 +75,78 @@
             line-height: 1.6;
         }
 
+        /* ── Qué hacemos ── */
+        .que-hacemos {
+            max-width: 1000px;
+            margin: 56px auto;
+            padding: 0 20px;
+        }
+
+        .que-hacemos__title {
+            color: #f8fafc;
+            font-size: clamp(1.4rem, 3vw, 1.9rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin: 0 0 28px;
+        }
+
+        .que-hacemos__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .proyecto-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 18px;
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-decoration: none;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .proyecto-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+            box-shadow: 0 8px 28px rgba(59, 130, 246, 0.2);
+        }
+
+        .proyecto-card__icon {
+            font-size: 2rem;
+        }
+
+        .proyecto-card__title {
+            margin: 0;
+            color: #f8fafc;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .proyecto-card__text {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 0.92rem;
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .proyecto-card__link {
+            color: #3b82f6;
+            font-weight: 700;
+            font-size: 0.88rem;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 700px) {
+            .que-hacemos__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .about-cta {
             text-align: center;
             margin: 56px auto 64px;
@@ -256,6 +328,31 @@
     <div id="banner-root"></div>
 
     <main>
+
+        <section class="que-hacemos">
+            <h2 class="que-hacemos__title">¿Qué hacemos?</h2>
+            <div class="que-hacemos__grid">
+                <a href="proyecto-rescate.html" class="proyecto-card">
+                    <div class="proyecto-card__icon">🐾</div>
+                    <h3 class="proyecto-card__title">Rescate en la calle</h3>
+                    <p class="proyecto-card__text">Operativos de rescate de animales abandonados o en riesgo, con atención veterinaria de urgencia y red de tránsito.</p>
+                    <span class="proyecto-card__link">Ver proyecto →</span>
+                </a>
+                <a href="proyecto-alimentacion.html" class="proyecto-card">
+                    <div class="proyecto-card__icon">🍽️</div>
+                    <h3 class="proyecto-card__title">Alimentación comunitaria</h3>
+                    <p class="proyecto-card__text">Puntos fijos de alimentación en barrios vulnerables para colonias de gatos y perros callejeros que no pueden ser reubicados.</p>
+                    <span class="proyecto-card__link">Ver proyecto →</span>
+                </a>
+                <a href="proyecto-cuidados.html" class="proyecto-card">
+                    <div class="proyecto-card__icon">💉</div>
+                    <h3 class="proyecto-card__title">Cuidados veterinarios</h3>
+                    <p class="proyecto-card__text">Jornadas de castración, vacunación y desparasitación gratuitas en zonas con alta concentración de animales sin dueño.</p>
+                    <span class="proyecto-card__link">Ver proyecto →</span>
+                </a>
+            </div>
+        </section>
+
         <section class="activities-section">
             <h2>¿Cómo desarrollamos nuestras actividades?</h2>
             <div class="activities-grid">
@@ -281,6 +378,7 @@
                 </article>
             </div>
         </section>
+
 
         <div class="about-cta">
             <a href="voluntarios.html">Sumate como voluntario</a>

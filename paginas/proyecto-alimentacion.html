@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alimentación comunitaria – ONG</title>
+    <link rel="stylesheet" href="../componentes/menu-flex/styles.css">
+    <link rel="stylesheet" href="../componentes/footer/styles.css">
+    <style>
+        .proyecto-hero {
+            max-width: 860px;
+            margin: 56px auto 0;
+            padding: 0 24px;
+        }
+
+        .proyecto-hero__back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #7dd3fc;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+            transition: color 0.2s;
+        }
+
+        .proyecto-hero__back:hover { color: #bae6fd; }
+
+        .proyecto-hero__tag {
+            display: inline-block;
+            background: #1a3a2a;
+            color: #6ee7b7;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+
+        .proyecto-hero h1 {
+            color: #f8fafc;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin: 0 0 20px;
+        }
+
+        .proyecto-hero__lead {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin: 0 0 40px;
+        }
+
+        .proyecto-body {
+            max-width: 720px;
+            margin: 0 auto 80px;
+            padding: 0 24px;
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .proyecto-body h2 {
+            color: #f8fafc;
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin: 40px 0 12px;
+        }
+
+        .proyecto-body p { margin: 0 0 16px; }
+
+        .proyecto-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card__number {
+            display: block;
+            color: #6ee7b7;
+            font-size: 2rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .stat-card__label {
+            display: block;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+
+        .puntos-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0 24px;
+            padding: 0;
+        }
+
+        .puntos-list li {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+        }
+
+        .puntos-list li::before {
+            content: "📍 ";
+        }
+
+        .proyecto-cta {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .proyecto-cta a {
+            display: inline-block;
+            background: #10b981;
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 36px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .proyecto-cta a:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .proyecto-stats { grid-template-columns: 1fr; }
+            .puntos-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div id="menu-root"></div>
+
+    <main>
+        <div class="proyecto-hero">
+            <span class="proyecto-hero__tag">🍽️ Alimentación</span>
+            <h1>Programa de alimentación comunitaria</h1>
+            <p class="proyecto-hero__lead">Mantenemos puntos fijos de alimentación en barrios con alta concentración de animales en situación de calle, garantizando que ningún animal pase hambre mientras trabajamos para reubicarlos.</p>
+        </div>
+
+        <div class="proyecto-body">
+            <div class="proyecto-stats">
+                <div class="stat-card">
+                    <span class="stat-card__number">8</span>
+                    <span class="stat-card__label">Puntos activos</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-card__number">200+</span>
+                    <span class="stat-card__label">Animales asistidos/mes</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-card__number">1.2 T</span>
+                    <span class="stat-card__label">Alimento distribuido/año</span>
+                </div>
+            </div>
+
+            <h2>¿Por qué la alimentación es clave?</h2>
+            <p>Un animal bien alimentado es menos agresivo, más fácil de abordar y tiene mejor respuesta a los tratamientos veterinarios. Los puntos de alimentación también nos permiten generar vínculos con las colonias de gatos y perros que habitan cada zona, facilitando el trabajo de identificación, castración y seguimiento sanitario.</p>
+            <p>Además, la alimentación regular reduce el deambulamiento de los animales en busca de comida, disminuyendo los conflictos con vecinos y el riesgo de accidentes de tránsito.</p>
+
+            <h2>Puntos de alimentación activos</h2>
+            <p>Nuestros puntos de alimentación son atendidos por voluntarios de zona que visitan cada punto entre 1 y 2 veces por día, según la demanda. Los puntos están geolocalizados y registrados en nuestra base de datos interna para coordinar la logística de reposición de alimento.</p>
+
+            <ul class="puntos-list">
+                <li>Belgrano R – Av. Juramento</li>
+                <li>Villa Urquiza – Triunvirato</li>
+                <li>Palermo – Parque Centenario</li>
+                <li>Colegiales – Av. Álvarez Thomas</li>
+                <li>Núñez – Av. del Libertador</li>
+                <li>Saavedra – Plaza Saavedra</li>
+                <li>Caballito – Parque Rivadavia</li>
+                <li>Almagro – Av. Corrientes</li>
+            </ul>
+
+            <h2>Cómo se financia</h2>
+            <p>El programa se sostiene íntegramente con donaciones de alimento balanceado y dinero de particulares y empresas. Cada mes necesitamos aproximadamente 100 kg de alimento seco para gatos y 80 kg para perros para mantener todos los puntos activos.</p>
+            <p>Si querés colaborar podés donar alimento en nuestros puntos de recepción o sumarte como voluntario de reparto.</p>
+
+            <div class="proyecto-cta">
+                <a href="donar.html">Donar</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-root"></div>
+
+    <script type="module" src="../componentes/menu-flex/menu.js"></script>
+    <script type="module">
+        import { renderFooter } from '../componentes/footer/footer.js';
+        renderFooter('footer-root');
+    </script>
+</body>
+</html>

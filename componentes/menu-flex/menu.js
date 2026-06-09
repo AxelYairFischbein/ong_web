@@ -23,6 +23,7 @@ export function renderMenu(selector = '#menu-root', { basePath = '' } = {}) {
             <div class="menu-panel" id="menu-panel">
                 <ul class="menu-links">
                     <li><a href="${basePath}paginas/nosotros.html">Nosotros</a></li>
+                    <li><a href="${basePath}paginas/proyectos.html">Proyectos</a></li>
                     <li><a href="${basePath}paginas/adopta.html">Adoptá</a></li>
                     <li><a href="${basePath}paginas/voluntarios.html">Voluntarios</a></li>
                     <li><a href="${basePath}paginas/contacto.html">Contacto</a></li>
